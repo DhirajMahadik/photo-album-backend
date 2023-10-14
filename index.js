@@ -14,6 +14,8 @@ import getCollectionsHandler from './routes/get-collections.js'
 import getCollectionImagesHandler from './routes/collection-images.js'
 import addImageToCollectionHandler from './routes/add-images.js'
 import getRecentImagesHandler from './routes/get-images.js';
+import deleteCollectionHandler from './routes/delete-collection.js';
+
 
 app.use('/api/auth',loginHandler)
 
@@ -26,6 +28,8 @@ app.use('/api', getCollectionImagesHandler)
 app.use('/api', addImageToCollectionHandler)
 
 app.use('/api', getRecentImagesHandler)
+
+app.use('/api', deleteCollectionHandler)
 
 connect.connect((error)=>{
     if(error) throw error;

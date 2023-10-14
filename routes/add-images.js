@@ -13,12 +13,11 @@ const router = express.Router()
 
 const cloudinary = Cloudinary.v2
 
- cloudinary.config({
+cloudinary.config({
     cloud_name: "djmp17jsh",
     api_key: "144788257939745",
     api_secret: "pU3s1YTh-zNkit2umw9S2YABNfk"
   });
-
 
   const multerUploads = multer({
     storage: multer.diskStorage({}),
@@ -29,7 +28,10 @@ const cloudinary = Cloudinary.v2
 
 }).single('image');
 
+
+
 router.post('/add-image/:id',verifyToken,multerUploads, (req,res)=>{
+
     const collection_id = req.params.id
     JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
@@ -37,7 +39,7 @@ router.post('/add-image/:id',verifyToken,multerUploads, (req,res)=>{
             if(error) res.status(500);
             database.query('insert into images (image_url,collectionId,userID) values(?,?,?)',[result.url,collection_id,authData.id],(error, response)=>{
             if(error) res.status(500).json('Image  not added')
-            res.send(response)
+            res.send('Image added ')
         })
         })
         
