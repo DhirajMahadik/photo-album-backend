@@ -6,7 +6,7 @@ import path from 'path'
 import JWT from 'jsonwebtoken'
 import Cloudinary from 'cloudinary'
 import env from 'dotenv'
-env.config({path:'../.env'})
+env.config()
 
 
 const router = express.Router()
@@ -14,9 +14,10 @@ const router = express.Router()
 const cloudinary = Cloudinary.v2
 
 cloudinary.config({
-    cloud_name: "djmp17jsh",
-    api_key: "144788257939745",
-    api_secret: "pU3s1YTh-zNkit2umw9S2YABNfk"
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+
   });
 
   const multerUploads = multer({

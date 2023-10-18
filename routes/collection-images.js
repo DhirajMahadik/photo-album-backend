@@ -3,7 +3,7 @@ import database from '../db_connection/config.js'
 import { verifyToken } from '../middlewares/verifyToken.js'
 import JWT from 'jsonwebtoken'
 import env from 'dotenv'
-env.config({path:'../.env'})
+env.config()
 
 
 const router = express.Router()

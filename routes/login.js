@@ -3,15 +3,12 @@ import JWT from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import database from '../db_connection/config.js'
 import env from 'dotenv'
-env.config({path:'../.env'})
+env.config()
 
 const route = express.Router()
-// const secreteKey = 'qwertyuiop987654321'
-
 
 route.post('/login', (req, res) => {
     try {
-        // console.log(process.env.JWT_SECRET)
         const email = req.body.email;
         let query = 'Select password, user_id from users where email = ?'
         database.query(query, [email], async (error, response) => {

@@ -2,7 +2,7 @@ import express from 'express'
 import connect from './db_connection/config.js'
 import cors from 'cors'
 import env from 'dotenv'
-env.config({ path: './.env' });
+env.config();
 
 const app = express()
 app.use(express.json())

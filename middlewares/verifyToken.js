@@ -6,6 +6,3 @@ export const verifyToken = (req,res,next) =>{
     req.token = token[1]
     next()
 }
-
-// let arr = "jkbkcjbckjb kncknckx"
-// arr.split
