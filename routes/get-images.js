@@ -12,7 +12,7 @@ router.get('/get-images',verifyToken, (req,res)=>{
     JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
         database.query('select * from images where userID = ?',[authData.id],(error, response)=>{
-            if(error) res.status(500).json('could not found images')
+            if(error) res.status(500).send('could not found images')
             res.send(response.slice(0,7))
         })
     })

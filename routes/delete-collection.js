@@ -13,9 +13,9 @@ router.get('/delete-collection/:id',verifyToken, (req,res)=>{
     JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
         database.query('delete from images where collectionId = ?',[collection_id],(error, response)=>{
-            if(error) res.status(500).json('Collection not deleted')
+            if(error) res.status(500).send('Collection not deleted')
             database.query('delete from collections where collection_id = ?',[collection_id],(error, response)=>{
-                if(error) res.status(500).json('Collection not deleted')
+                if(error) res.status(500).send('Collection not deleted')
                 res.send('Collection Deleted')
             })
             

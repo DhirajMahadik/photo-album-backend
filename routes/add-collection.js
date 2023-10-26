@@ -13,7 +13,7 @@ router.post('/add-collection',verifyToken, (req,res)=>{
     JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
         database.query('insert into collections (collection_name,userId) values(?,?)',[collection,authData.id],(error, response)=>{
-            if(error) res.status(500).json('Collection not added')
+            if(error) res.status(500).send('Collection not added')
             res.send('Collection added')
         })
     })

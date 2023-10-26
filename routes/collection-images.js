@@ -13,7 +13,7 @@ router.get('/get-collection-images/:id',verifyToken, (req,res)=>{
     JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
         database.query('select * from images where collectionId = ?',[collection_id],(error, response)=>{
-            if(error) res.status(500).json('Collection not added')
+            if(error) res.status(500).send('Collection not added')
             res.send(response)
         })
     })
