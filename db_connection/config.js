@@ -12,11 +12,11 @@ const connect = mysql.createConnection({
 })
 
 // database details for your reference 
-    // Tables = users , collections, images
+    // Tables = photo_album_users , photo_album_collections, photo_album_images
     // columns in tables = {
-    //     users = user_id, email, password
-    //     collections = userId, collection_id, collection_name
-    //     images = image_id, image_url, collectionId, userID
+    //     photo_album_users = user_id, email, password
+    //     photo_album_collections = userId, collection_id, collection_name
+    //     photo_album_images = image_id, image_url, collectionId, userID
     // }
 
 export default connect;

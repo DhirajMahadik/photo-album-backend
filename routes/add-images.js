@@ -38,7 +38,7 @@ router.post('/add-image/:id',verifyToken,multerUploads, (req,res)=>{
         if(error) res.status(409)
         cloudinary.uploader.upload(req.file.path,(error,result)=>{
             if(error) res.status(500);
-            database.query('insert into images (image_url,collectionId,userID) values(?,?,?)',[result.url,collection_id,authData.id],(error, response)=>{
+            database.query('insert into photo_album_images (image_url,collectionId,userID) values(?,?,?)',[result.url,collection_id,authData.id],(error, response)=>{
             if(error) res.status(500).send('Image  not added')
             res.send('Image added ')
         })
