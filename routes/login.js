@@ -10,13 +10,13 @@ const route = express.Router()
 route.post('/login', (req, res) => {
     try {
         const email = req.body.email;
-        let query = 'Select password, user_id from users where email = ?'
+        let query = 'Select password, id from users where email = ?'
         database.query(query, [email], async (error, response) => {
             if (error) res.status(500).send( 'some error occurs' );
             if (response.length !== 0) {
                 let pass = await bcrypt.compare(req.body.password, response[0].password);
                 if (pass) {
-                    let id = response[0].user_id
+                    let id = response[0].id
                     JWT.sign({ id }, process.env.JWT_SECRET, (error, token) => {
                         if (error) res.status(500).send('some error occurs');
                         res.send({ token })
