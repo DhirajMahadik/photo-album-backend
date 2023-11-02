@@ -32,9 +32,9 @@ cloudinary.config({
 
 
 router.post('/add-image/:id',verifyToken,multerUploads, (req,res)=>{
-
-    const collection_id = req.params.id
-    JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
+    try {
+        const collection_id = req.params.id
+         JWT.verify(req.token, process.env.JWT_SECRET,(error,authData)=>{
         if(error) res.status(409)
         cloudinary.uploader.upload(req.file.path,(error,result)=>{
             if(error) res.status(500);
@@ -45,6 +45,10 @@ router.post('/add-image/:id',verifyToken,multerUploads, (req,res)=>{
         })
         
     })
+    } catch (error) {
+        console.log(error)
+    }
+    
    
 })
 
